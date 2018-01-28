@@ -21,5 +21,5 @@ public class IzanamiScript : MonoBehaviour {
             var x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
             transform.Translate(x, 0, 0);
         }
-	}
+    }
 }
