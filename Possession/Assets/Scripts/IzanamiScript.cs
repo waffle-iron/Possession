@@ -18,7 +18,7 @@ public class IzanamiScript : MonoBehaviour {
         timer += Time.deltaTime;
         if (timer > sec)
         {
-            var x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+            var x = Input.GetAxis("NamiX") * Time.deltaTime * speed;
             transform.Translate(x, 0, 0);
         }
 	}
