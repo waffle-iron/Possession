@@ -27,15 +27,17 @@ public class Izanagi : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!follow)
+        if (!s_izanami.follow)
         {
             var x = Input.GetAxis("NagiX") * Time.deltaTime * speed;
             transform.Translate(x, 0, 0);
         } else
         {
-            var x = Input.GetAxis("NamiX") * Time.deltaTime * speed;
-            transform.Translate(x, 0, 0);
+            if (s_izanami.form == "ghost")
+            {
+                var x = Input.GetAxis("NamiX") * Time.deltaTime * speed;
+                transform.Translate(x, 0, 0);
+            }
         }
-        
     }
 }

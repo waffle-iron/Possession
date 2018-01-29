@@ -33,6 +33,37 @@ public class Izanami : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonUp("Ybutton"))
+        {
+            Debug.Log("y");
+            if (follow == true)
+            {
+                Debug.Log("unfollow");
+                follow = false;
+            }
+            else if (((s_izanagi.transform.position.x - this.transform.position.x < 4)
+                && (s_izanagi.transform.position.x - this.transform.position.x > -4))
+                && follow == false)
+            {
+                Debug.Log("follow");
+                follow = true;
+                if (this.form == "ghost")
+                {
+                    Vector3 start = new Vector3(this.transform.transform.position.x, this.transform.position.y, this.transform.position.z);
+                    Vector3 end = new Vector3();
+                    if (s_izanagi.transform.position.x > this.transform.position.x)
+                    {
+                        end = new Vector3(s_izanagi.transform.transform.position.x - 1.0f, this.transform.position.y, this.transform.position.z);
+                        s_izanami.transform.position = Vector3.Lerp(start, end, speed * Time.deltaTime);
+                    } else
+                    {
+                        end = new Vector3(s_izanagi.transform.transform.position.x + 1.0f, this.transform.position.y, this.transform.position.z);
+                        s_izanami.transform.position = Vector3.Lerp(start, end, speed * Time.deltaTime);
+                    }
+                }
+            }
+        }
+
         if (!follow)
         {
             if (Input.GetAxis("NamiX") != 0)
@@ -44,23 +75,25 @@ public class Izanami : MonoBehaviour
             {
                 this.transform.position = this.transform.position;
             }
-        }
-        
-        if (Input.GetButton("Ybutton"))
+        } else
         {
-            if (Vector3.Distance(s_izanagi.transform.position, this.transform.position) < 5)
+            if (form == "ghost")
             {
-                follow = true;
-                if (this.form == "ghost")
+                if (s_izanagi.transform.position.x - this.transform.position.x > 1.5)
                 {
-                    Vector3 start = new Vector3(s_izanagi.transform.transform.position.x, s_izanagi.transform.position.y, s_izanagi.transform.position.z);
-                    Vector3 end = new Vector3(s_izanami.transform.transform.position.x + 1.5f, s_izanagi.transform.position.y, s_izanagi.transform.position.z);
-                    s_izanagi.transform.position = Vector3.Lerp(start, end, speed * Time.deltaTime);
+                    Vector3 start = new Vector3(this.transform.transform.position.x, this.transform.position.y, this.transform.position.z);
+                    Vector3 end = new Vector3(s_izanagi.transform.transform.position.x - 1.5f, this.transform.position.y, this.transform.position.z);
+                    this.transform.position = Vector3.Lerp(start, end, speed * Time.deltaTime);
+                } else if (s_izanagi.transform.position.x - this.transform.position.x < -1.5)
+                {
+                    Vector3 start = new Vector3(this.transform.transform.position.x, this.transform.position.y, this.transform.position.z);
+                    Vector3 end = new Vector3(s_izanagi.transform.transform.position.x + 1.5f, this.transform.position.y, this.transform.position.z);
+                    this.transform.position = Vector3.Lerp(start, end, speed * Time.deltaTime);
                 }
-                
-                
             }
         }
+        
+        
          
         
     }
