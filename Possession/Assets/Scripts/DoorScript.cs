@@ -9,49 +9,58 @@ public class DoorScript : MonoBehaviour
     public bool isLock;
     public bool isOpen = false;
     public bool isPlayerIn = false;
+    public bool isOpenable = false;
     public Transform player;
     Rigidbody rb;
-    private float m_lastPressed;
 
     // Use this for initialization
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        m_lastPressed = Time.time;
+        if (gameObject.name == "Door1")
+        {
+            isOpenable = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        isPlayerIn = (player.transform.position.x - transform.position.x > 0);
-        if (Input.GetKeyDown("space"))
+        if (isOpenable)
         {
-            if (!isLock && !isOpen)
+            isPlayerIn = (player.transform.position.x - transform.position.x > 0);
+            if (Input.GetKeyDown("space"))
             {
-                Debug.Log("Opening the door when it's not locked and it's closed");
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(0f, 2f, 1.5f), Time.deltaTime * 1000f);
-                isOpen = true;
-            }
-            //if (isOpen)
-            //{
-            //    Debug.Log("Closing the door when it's opened");
-            //    transform.position = Vector3.MoveTowards(transform.position, new Vector3(0f, 2f, 0f), Time.deltaTime * 1000f);
-            //    isOpen = false;
-            //}
-            if (isPlayerIn && isLock)
-            {
-                Debug.Log("Unlock the door when it's locked and player is inside the door");
-                Lock.position = Vector3.MoveTowards(Lock.position, new Vector3(0.45f, 1.5f, -1.43f), 1000f * Time.deltaTime);
-                isLock = false;
+                if (!isLock && !isOpen)
+                {
+                    Debug.Log("Opening the door when it's not locked and it's closed");
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(0f, 2f, 1.5f), Time.deltaTime * 1000f);
+                    isOpen = true;
+                }
+                //if (isOpen)
+                //{
+                //    Debug.Log("Closing the door when it's opened");
+                //    transform.position = Vector3.MoveTowards(transform.position, new Vector3(0f, 2f, 0f), Time.deltaTime * 1000f);
+                //    isOpen = false;
+                //}
+                if (isPlayerIn && isLock)
+                {
+                    Debug.Log("Unlock the door when it's locked and player is inside the door");
+                    Lock.position = Vector3.MoveTowards(Lock.position, new Vector3(0.45f, 1.5f, -1.43f), 1000f * Time.deltaTime);
+                    isLock = false;
+                }
             }
         }
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Lock")
+        if (isOpenable)
         {
-            isLock = true;
+            if (col.gameObject.name == "Lock")
+            {
+                isLock = true;
+            }
         }
     }
 
