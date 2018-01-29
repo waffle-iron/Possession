@@ -27,6 +27,12 @@ public class Izanagi : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		Vector3 pos = Camera.main.WorldToViewportPoint (transform.position);
+		pos.x = Mathf.Clamp01(pos.x);
+		pos.y = Mathf.Clamp01(pos.y);
+		transform.position = Camera.main.ViewportToWorldPoint(pos);
+
         if (!s_izanami.follow)
         {
             var x = Input.GetAxis("NagiX") * Time.deltaTime * speed;
