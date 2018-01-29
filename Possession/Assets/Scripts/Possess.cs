@@ -17,7 +17,7 @@ public class Possess : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         targets(s_izanami.transform.position, 3);
-        possess();
+        //possess();
 	}
 
     void targets(Vector3 center, float radius)
