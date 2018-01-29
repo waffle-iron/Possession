@@ -776,7 +776,7 @@ GameObject:
   - component: {fileID: 724375847}
   m_Layer: 9
   m_Name: Oni2
-  m_TagString: Untagged
+  m_TagString: Oni
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1378,7 +1378,7 @@ GameObject:
   - component: {fileID: 1347546201}
   m_Layer: 9
   m_Name: Oni1
-  m_TagString: Untagged
+  m_TagString: Oni
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
