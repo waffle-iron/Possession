@@ -8,7 +8,6 @@ public class Izanami : MonoBehaviour
     public float speed = 10;
     static Izanagi s_izanagi;
     static Izanami s_izanami;
-
     public string form;
     public bool follow;
 
@@ -54,11 +53,11 @@ public class Izanami : MonoBehaviour
                     if (s_izanagi.transform.position.x > this.transform.position.x)
                     {
                         end = new Vector3(s_izanagi.transform.transform.position.x - 1.0f, this.transform.position.y, this.transform.position.z);
-                        s_izanami.transform.position = Vector3.Lerp(start, end, speed * Time.deltaTime);
+                        s_izanami.transform.position = Vector3.Lerp(start, end, speed/2 * Time.deltaTime);
                     } else
                     {
                         end = new Vector3(s_izanagi.transform.transform.position.x + 1.0f, this.transform.position.y, this.transform.position.z);
-                        s_izanami.transform.position = Vector3.Lerp(start, end, speed * Time.deltaTime);
+                        s_izanami.transform.position = Vector3.Lerp(start, end, speed/2 * Time.deltaTime);
                     }
                 }
             }
@@ -79,15 +78,15 @@ public class Izanami : MonoBehaviour
         {
             if (form == "ghost")
             {
-                if (s_izanagi.transform.position.x - this.transform.position.x > 1.5)
+                if (s_izanagi.transform.position.x - this.transform.position.x > 1.0)
                 {
                     Vector3 start = new Vector3(this.transform.transform.position.x, this.transform.position.y, this.transform.position.z);
-                    Vector3 end = new Vector3(s_izanagi.transform.transform.position.x - 1.5f, this.transform.position.y, this.transform.position.z);
+                    Vector3 end = new Vector3(s_izanagi.transform.transform.position.x - 1.0f, this.transform.position.y, this.transform.position.z);
                     this.transform.position = Vector3.Lerp(start, end, speed * Time.deltaTime);
-                } else if (s_izanagi.transform.position.x - this.transform.position.x < -1.5)
+                } else if (s_izanagi.transform.position.x - this.transform.position.x < -1.0)
                 {
                     Vector3 start = new Vector3(this.transform.transform.position.x, this.transform.position.y, this.transform.position.z);
-                    Vector3 end = new Vector3(s_izanagi.transform.transform.position.x + 1.5f, this.transform.position.y, this.transform.position.z);
+                    Vector3 end = new Vector3(s_izanagi.transform.transform.position.x + 1.0f, this.transform.position.y, this.transform.position.z);
                     this.transform.position = Vector3.Lerp(start, end, speed * Time.deltaTime);
                 }
             }

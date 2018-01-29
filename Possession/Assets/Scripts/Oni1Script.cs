@@ -59,5 +59,6 @@ public class Oni1Script : MonoBehaviour {
 
 	public void EnemyIsDead(){
 		anim.SetBool ("enemyDead", true);
+        this.gameObject.layer = 10;
 	}
 }
