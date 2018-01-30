@@ -13,6 +13,9 @@ public class DoorScript : MonoBehaviour
     public Transform player;
     Rigidbody rb;
 
+    static DoorScript s_door;
+    static Izanami m_izanami;
+
     // Use this for initialization
     void Start()
     {
@@ -21,8 +24,23 @@ public class DoorScript : MonoBehaviour
         {
             isOpenable = true;
         }
+        m_izanami = Izanami.Get();
+        player = m_izanami.transform;
+        Debug.Log(m_izanami.gameObject.name);
+        
     }
 
+    DoorScript()
+    {
+        s_door = this;
+        
+        
+    }
+
+    public static DoorScript Get()
+    {
+        return s_door;
+    }
     // Update is called once per frame
     void Update()
     {

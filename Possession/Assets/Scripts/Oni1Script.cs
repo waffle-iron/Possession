@@ -5,7 +5,7 @@ using UnityEngine;
 public class Oni1Script : MonoBehaviour {
 
 	Renderer rend;
-	private bool dead = false;
+	public bool dead = false;
 	Animator anim;
 
 	[Header("Oni Stats")]

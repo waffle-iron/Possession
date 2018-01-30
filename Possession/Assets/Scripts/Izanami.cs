@@ -52,7 +52,7 @@ public class Izanami : MonoBehaviour
             {
                 Debug.Log("follow");
                 follow = true;
-                if (this.form == "ghost")
+                if (this.form == "ghost" || this.form == "oni") //for tech demo
                 {
                     Vector3 start = new Vector3(this.transform.transform.position.x, this.transform.position.y, this.transform.position.z);
                     Vector3 end = new Vector3();
